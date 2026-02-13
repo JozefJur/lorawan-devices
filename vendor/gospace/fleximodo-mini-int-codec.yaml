@@ -1,0 +1,619 @@
+# Uplink decoder decodes binary data uplink into a JSON object (optional)
+# For documentation on writing encoders and decoders, see: https://www.thethingsindustries.com/docs/integrations/payload-formatters/javascript/
+uplinkDecoder:
+  fileName: fleximodo-mini-int.js
+  examples:
+    - description: Status free
+      input:
+        fPort: 1
+        bytes: [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x0001 # STATUS_FREE
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0000
+          e_cnt: 0
+
+    - description: Status occupied
+      input:
+        fPort: 1
+        bytes: [0, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x0002 # STATUS_OCCUPIED
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0
+          e_cnt: 0
+
+    - description: Status card
+      input:
+        fPort: 1
+        bytes: [0, 4, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x0004 # STATUS_CARD
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0000
+          e_cnt: 0
+
+    - description: Status detection
+      input:
+        fPort: 1
+        bytes: [0, 8, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x0008 # STATUS_DETECTION
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0000
+          e_cnt: 0
+
+    - description: Status reset
+      input:
+        fPort: 1
+        bytes: [0, 16, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x0010 # STATUS_RESET
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0
+          e_cnt: 0
+
+    - description: STATUS_MAG_ERROR
+      input:
+        fPort: 1
+        bytes: [0, 32, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x0020 # STATUS_MAG_ERROR
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0
+          e_cnt: 0
+
+    - description: STATUS_LOWBAT
+      input:
+        fPort: 1
+        bytes: [0, 64, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x0040 # STATUS_LOWBAT
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0
+          e_cnt: 0
+
+    - description: STATUS_TEMP_HIGH
+      input:
+        fPort: 1
+        bytes: [0, 128, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x0080 # STATUS_TEMP_HIGH
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0
+          e_cnt: 0
+
+    - description: STATUS_NETWORK_ERR
+      input:
+        fPort: 1
+        bytes: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x0100 # STATUS_NETWORK_ERR
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0000
+          e_cnt: 0
+
+    - description: STATUS_BLE_ERR
+      input:
+        fPort: 1
+        bytes: [2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x0200 # STATUS_BLE_ERR
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0
+          e_cnt: 0
+
+    - description: STATUS_RADAR_ERR
+      input:
+        fPort: 1
+        bytes: [4, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x0400 # STATUS_RADAR_ERR
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0000
+          e_cnt: 0
+
+    - description: STATUS_CMD_DONE
+      input:
+        fPort: 1
+        bytes: [8, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x0800 # STATUS_CMD_DONE
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0000
+          e_cnt: 0
+
+    - description: STATUS_IDLE
+      input:
+        fPort: 1
+        bytes: [16, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x1000 # STATUS_IDLE
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0
+          e_cnt: 0
+
+    - description: STATUS_MAGNET
+      input:
+        fPort: 1
+        bytes: [32, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x2000 # STATUS_MAGNET
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0
+          e_cnt: 0
+
+    - description: STATUS_CALIB_ERROR
+      input:
+        fPort: 1
+        bytes: [64, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x4000 # STATUS_CALIB_ERROR
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0
+          e_cnt: 0
+
+    - description: STATUS_MAG_DISTURB
+      input:
+        fPort: 1
+        bytes: [128, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      output:
+        data:
+          event: 0x8000 # STATUS_MAG_DISTURB
+          mag_total: 0
+          derivation: 0
+          temperature: 0
+          voltage: 1
+          extended_info: 0
+          extended_info_2: 0
+          p_time: 0
+          e_cnt: 0
+
+# Downlink encoder encodes JSON object into a binary data downlink (optional)
+downlinkEncoder:
+  fileName: fleximodo-mini-int.js
+  examples:
+    - description: SetTime
+      input:
+        data:
+          cmdID: 0x00
+          timestamp: 00000000
+      output:
+        bytes: [0, 0, 0, 0]
+        fPort: 1
+
+    - description: SetCalibration
+      input:
+        data:
+          cmdID: 0x01
+          calibration: 0
+      output:
+        bytes: [0]
+        fPort: 1
+
+    - description: Reboot
+      input:
+        data:
+          cmdID: 0x02
+          reboot: 0
+      output:
+        bytes: [0]
+        fPort: 2
+
+    - description: SetTemp
+      input:
+        data:
+          cmdID: 0x03
+          temperature: 0
+      output:
+        bytes: [0]
+        fPort: 3
+
+    - description: SetBat
+      input:
+        data:
+          cmdID: 0x04
+          battery: 0000
+      output:
+        bytes: [0, 0]
+        fPort: 4
+
+    - description: SetIdle
+      input:
+        data:
+          cmdID: 0x05
+          idle: 0
+      output:
+        bytes: [0]
+        fPort: 5
+
+    - description: SetEvent
+      input:
+        data:
+          cmdID: 0x06
+          event: 0
+      output:
+        bytes: [0]
+        fPort: 6
+
+    - description: SetLowMag
+      input:
+        data:
+          cmdID: 0x07
+          lowmag: 0
+      output:
+        bytes: [0]
+        fPort: 7
+
+    - description: SetHighMag
+      input:
+        data:
+          cmdID: 0x08
+          highmag: 0
+      output:
+        bytes: [0]
+        fPort: 8
+
+    - description: SetDerivation
+      input:
+        data:
+          cmdID: 0x09
+          derivation: 0
+      output:
+        bytes: [0]
+        fPort: 9
+
+    - description: SetIP
+      input:
+        data:
+          cmdID: 0x0A
+          ip: 00000000
+      output:
+        bytes: [0, 0, 0, 0]
+        fPort: 10
+
+    - description: SetScan
+      input:
+        data:
+          cmdID: 0x0B
+          scan: 0000
+      output:
+        bytes: [0, 0]
+        fPort: 11
+
+    - description: SetAdvertising
+      input:
+        data:
+          cmdID: 0x0C
+          advertising: 0000
+      output:
+        bytes: [0, 0]
+        fPort: 12
+
+    - description: SetRadarThr
+      input:
+        data:
+          cmdID: 0x0D
+          radarTreshold: 0
+      output:
+        bytes: [0]
+        fPort: 13
+
+    - description: SetRadarCorr
+      input:
+        data:
+          cmdID: 0x0E
+          radarCorrelation: 0
+      output:
+        bytes: [0]
+        fPort: 14
+
+    - description: SetParkId
+      input:
+        data:
+          cmdID: 0x0F
+          parkID: 0000
+      output:
+        bytes: [0, 0]
+        fPort: 15
+
+    - description: IpPort
+      input:
+        data:
+          cmdID: 0x10
+          ipPort: 0000
+      output:
+        bytes: [0, 0]
+        fPort: 16
+
+    - description: SetIPCType
+      input:
+        data:
+          cmdID: 0x11
+          ipcType: 0
+      output:
+        bytes: [0]
+        fPort: 17
+
+    - description: EchoTc
+      input:
+        data:
+          cmdID: 0x12
+          echo: 0000
+      output:
+        bytes: [0, 0]
+        fPort: 18
+
+    - description: LoRaRepetition
+      input:
+        data:
+          cmdID: 0x13
+          loraRepetition: 0
+      output:
+        bytes: [0]
+        fPort: 19
+
+    - description: LoRaAdr
+      input:
+        data:
+          cmdID: 0x14
+          loraAdr: 0
+      output:
+        bytes: [0]
+        fPort: 20
+
+# Downlink decoder decodes the encoded downlink message (optional, must be symmetric with downlinkEncoder)
+downlinkDecoder:
+  fileName: fleximodo-mini-int.js
+  examples:
+
+    - description: SetCalibration
+      input:
+        fPort: 1
+        bytes: [0]
+      output:
+        data:
+          cmdID: 0x01
+          calibration: 0
+    - description: Reboot
+      input:
+        fPort: 2
+        bytes: [0]
+      output:
+        data:
+          cmdID: 0x02
+          reboot: 0
+    - description: SetTemp
+      input:
+        fPort: 3
+        bytes: [0]
+      output:
+        data:
+          cmdID: 0x03
+          temperature: 0
+    - description: SetBat
+      input:
+        fPort: 4
+        bytes: [0, 0]
+      output:
+        data:
+          cmdID: 0x04
+          battery: 0000
+    - description: SetIdle
+      input:
+        fPort: 5
+        bytes: [0]
+      output:
+        data:
+          cmdID: 0x05
+          idle: 0
+    - description: SetEvent
+      input:
+        fPort: 6
+        bytes: [0]
+      output:
+        data:
+          cmdID: 0x06
+          event: 0
+    - description: SetLowMag
+      input:
+        fPort: 7
+        bytes: [0]
+      output:
+        data:
+          cmdID: 0x07
+          lowmag: 0
+    - description: SetHighMag
+      input:
+        fPort: 8
+        bytes: [0]
+      output:
+        data:
+          cmdID: 0x08
+          highmag: 0
+    - description: SetDerivation
+      input:
+        fPort: 9
+        bytes: [0]
+      output:
+        data:
+          cmdID: 0x09
+          derivation: 0
+    - description: SetIP
+      input:
+        fPort: 10
+        bytes: [0, 0, 0, 0]
+      output:
+        data:
+          cmdID: 0x0A
+          ip: 00000000
+    - description: SetScan
+      input:
+        fPort: 11
+        bytes: [0, 0]
+      output:
+        data:
+          cmdID: 0x0B
+          scan: 0000
+    - description: SetAdvertising
+      input:
+        fPort: 12
+        bytes: [0, 0]
+      output:
+        data:
+          cmdID: 0x0C
+          advertising: 0000
+    - description: SetRadarThr
+      input:
+        fPort: 13
+        bytes: [0]
+      output:
+        data:
+          cmdID: 0x0D
+          radarTreshold: 0
+    - description: SetRadarCorr
+      input:
+        fPort: 14
+        bytes: [0]
+      output:
+        data:
+          cmdID: 0x0E
+          radarCorrelation: 0
+    - description: SetParkId
+      input:
+        fPort: 15
+        bytes: [0, 0]
+      output:
+        data:
+          cmdID: 0x0F
+          parkID: 0000
+    - description: IpPort
+      input:
+        fPort: 16
+        bytes: [0, 0]
+      output:
+        data:
+          cmdID: 0x10
+          ipPort: 0000
+    - description: SetIPCType
+      input:
+        fPort: 17
+        bytes: [0]
+      output:
+        data:
+          cmdID: 0x11
+          ipcType: 0
+    - description: EchoTc
+      input:
+        fPort: 18
+        bytes: [0, 0]
+      output:
+        data:
+          cmdID: 0x12
+          echo: 0000
+    - description: LoRaRepetition
+      input:
+        fPort: 19
+        bytes: [0]
+      output:
+        data:
+          cmdID: 0x13
+          loraRepetition: 0
+    - description: LoRaAdr
+      input:
+        fPort: 20
+        bytes: [0]
+      output:
+        data:
+          cmdID: 0x14
+          loraAdr: 0

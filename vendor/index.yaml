@@ -2186,3 +2186,9 @@ vendors:
     logo: fencyboy_logo.png
     social:
       linkedin: https://www.linkedin.com/showcase/fencyboy
+
+  - id: gospace
+    name: Gospace Labs
+    website: https://www.gospace.tech/
+    social:
+      linkedin: https://www.linkedin.com/company/gospacetech/

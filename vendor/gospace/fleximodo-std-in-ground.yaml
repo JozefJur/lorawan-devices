@@ -1,0 +1,80 @@
+name: fleximodo-std-in-ground # Device name can not contain the vendor name
+description: Parking sensor
+
+# Hardware versions (optional, use when you have revisions)
+hardwareVersions:
+  - version: '1.0'
+    numeric: 1
+# Firmware versions (at least one is mandatory)
+firmwareVersions:
+  - # Firmware version
+    version: '18.0'
+    numeric: 18
+    hardwareVersions:
+      - '1.0'
+    profiles:
+      EU863-870:
+        id: fleximodo-std-in-ground-profile
+        #        lorawanCertified: true
+        codec: fleximodo-std-in-ground-codec
+
+# Type of device (optional)
+# Valid values are: devkit, module, cots
+#deviceType: cots
+
+# Sensors that this device features (optional)
+# Valid values are:
+# 4-20 ma, accelerometer, altitude, analog input, auxiliary, barometer, battery, button, bvoc, co, co2, conductivity, current, digital input,
+# digital output, dissolved oxygen, distance, dust, energy, gps, gyroscope, h2s, hall effect, humidity, iaq, infrared, leaf wetness, level,
+# light, lightning, link, magnetometer, moisture, motion, nfc, no, no2, o3, occupancy, optical meter, particulate matter, ph, pir,
+# pm2.5, pm10, potentiometer, power, precipitation, pressure, proximity, pulse count, pulse frequency, radar, rainfall, reed switch, rssi,
+# sap flow, smart valve, smoke, snr, so2, solar radiation, sound, strain, surface temperature, switch, temperature, tilt, time, turbidity,
+# tvoc, uv, vapor pressure, velocity, vibration, voltage, water potential, water, weight, wifi ssid, wind direction, wind speed.
+sensors:
+  - radar
+  - temperature
+  - battery
+  - voltage
+
+# Dimensions in mm (optional)
+# Use width, height, length and/or diameter
+dimensions:
+  width: 115
+  height: 64
+  weight: 390
+
+
+# Operating conditions (optional)
+operatingConditions:
+  # Temperature (Celsius)
+  temperature:
+    min: -40
+    max: 80
+
+# IP rating (optional)
+ipCode: IP68
+
+
+# Product and data sheet URLs (optional)
+productURL: https://fleximodo.com/products/hardware/iot-parking-sensor
+dataSheetURL: https://fleximodo.com/assets/pdfs/datasheets/Datasheet_IOT-Sensors_Standard-In-ground.pdf
+
+# Link to simple, easy onboarding instructions for the device (optional).
+# Please do not use this for marketing or overly technical documents like a data sheet.
+# onboardingGuideURL: https://www.thethingsindustries.com/docs/devices/models/windsensor
+
+# Commercial information
+resellerURLs:
+  - name: 'GoSpace'
+    region: # valid regions are: Argentina, Australia, Brazil, Canada, China, European Union, India, Indonesia.
+      # Japan, Mexico, Russia, Saudi Arabia, South Africa, South Korea, Turkey, United States, United Kingdom, Other
+      - European Union
+      - United States
+    url: https://fleximodo.com/contact
+#msrp:
+#  EUR: 90
+#  USD: 120
+
+# Photos
+photos:
+  main: fleximodo1.png # Image needs to have a transparent background
